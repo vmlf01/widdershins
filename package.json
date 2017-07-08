@@ -34,7 +34,7 @@
   "dependencies": {
     "dot": "^1.0.3",
     "jgexml": "latest",
-    "js-yaml": "^3.6.1",
+    "js-yaml": "^3.9.0",
     "openapi-sampler": "~0.3.3",
     "openapi_optimise": "latest",
     "yargs": "^8.0.1"
