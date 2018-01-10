@@ -100,9 +100,11 @@ function convert(api, options, callback) {
     data.utils.schemaToArray = common.schemaToArray;
     data.utils.getCodeSamples = common.getCodeSamples;
 
-    let content = '---\n'+yaml.safeDump(header)+'\n---\n\n'+
-        templates.main(data);
+    let content = options.noHeader ? '' : '---\n'+yaml.safeDump(header)+'\n---\n\n';
+    content += templates.main(data);
     content = common.removeDupeBlankLines(content);
+
+    if (options.html) content = common.html(content,header,options);
 
     callback(null,content);
 }

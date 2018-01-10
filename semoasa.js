@@ -72,9 +72,11 @@ function convert(api, options, callback) {
         return s.split('\r').join('').split('\n').join(' ').trim();
     };
 
-    let content = '---\n'+yaml.safeDump(header)+'\n---\n\n'+
-        templates.main(data);
+    let content = options.noHeader ? '' : '---\n'+yaml.safeDump(header)+'\n---\n\n';
+    content += templates.main(data);
     content = common.removeDupeBlankLines(content);
+
+    if (options.html) content = common.html(content,header,options);
 
     callback(null,content);
 }
